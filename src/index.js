@@ -11,6 +11,6 @@ const config = {
 	projectId: "apresentacao-4d0ff",
 };
 firebase.initializeApp(config)
-// firebase.auth().signInAnonymously()
+firebase.auth().signInAnonymously()
 
 ReactDOM.render(<App />, document.getElementById('root'));

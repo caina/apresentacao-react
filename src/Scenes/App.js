@@ -13,12 +13,7 @@ class App extends Component {
 		this.state = {
 			author: undefined,
 			twit: undefined,
-			twits: [
-				{
-					author: 'apresenta',
-					twit: 'vai cavalo'
-				}
-			]
+			twits: []
 		}
 
 		this.send = this.send.bind(this)
@@ -28,16 +23,12 @@ class App extends Component {
 	componentDidMount() {
 		this.firebaseRef = firebase.database().ref('/twits')
 		this.firebaseRef.on('value', (snapshot) => {
-			const teste = snapshot.val()
-			const obj = Object.keys(teste)
-			const vai = obj.map(key => {
-				return { author: teste[key].author, twit: teste[key].twit }
+			const map = snapshot.val()
+			const chaves = Object.keys(map)
+			const twits = chaves.map(key => {
+				return { author: map[key].author, twit: map[key].twit }
 			})
-
-			console.log(vai)
-			if (vai !== null) {
-				this.setState({ twits: [...this.state.twits, ...vai] })
-			}
+			this.setState({ twits: [...this.state.twits, ...twits] })
 		})
 	}
 
