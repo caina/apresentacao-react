@@ -26,10 +26,9 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.firebaseRef = firebase.database().ref('/')
+		this.firebaseRef = firebase.database().ref('/twits')
 		this.firebaseRef.on('value', (snapshot) => {
-			const twits = snapshot.val()
-
+			this.setState({ twits: [...this.state.twits, snapshot.val()] })
 		})
 	}
 
@@ -38,7 +37,10 @@ class App extends Component {
 	}
 
 	send() {
-		console.log(this.state)
+		this.firebaseRef.database.ref('/twists').push({
+			author: this.state.author,
+			twit: this.state.twit
+		})
 	}
 
 	render() {
