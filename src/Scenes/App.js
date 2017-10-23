@@ -28,9 +28,15 @@ class App extends Component {
 	componentDidMount() {
 		this.firebaseRef = firebase.database().ref('/twits')
 		this.firebaseRef.on('value', (snapshot) => {
-			console.log(snapshot.val())
-			if(snapshot.val() !== null) {
-				this.setState({ twits: [...this.state.twits, snapshot.val()] })
+			const teste = snapshot.val()
+			const obj = Object.keys(teste)
+			const vai = obj.map(key => {
+				return { author: teste[key].author, twit: teste[key].twit }
+			})
+
+			console.log(vai)
+			if (vai !== null) {
+				this.setState({ twits: [...this.state.twits, ...vai] })
 			}
 		})
 	}
