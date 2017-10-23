@@ -28,7 +28,10 @@ class App extends Component {
 	componentDidMount() {
 		this.firebaseRef = firebase.database().ref('/twits')
 		this.firebaseRef.on('value', (snapshot) => {
-			this.setState({ twits: [...this.state.twits, snapshot.val()] })
+			console.log(snapshot.val())
+			if(snapshot.val() !== null) {
+				this.setState({ twits: [...this.state.twits, snapshot.val()] })
+			}
 		})
 	}
 
@@ -37,7 +40,7 @@ class App extends Component {
 	}
 
 	send() {
-		this.firebaseRef.database.ref('/twists').push({
+		this.firebaseRef.database.ref('/twits').push({
 			author: this.state.author,
 			twit: this.state.twit
 		})
