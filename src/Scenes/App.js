@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import Twit from './components/Twit'
 import TwitForm from './components/TwitForm'
 import { Container, Row, Col } from 'reactstrap';
+import _ from '../_'
 
 class App extends Component {
 
@@ -25,7 +26,7 @@ class App extends Component {
 			const map = snapshot.val()
 			const chaves = Object.keys(map || [])
 			const twits = chaves.map(key => {
-				return { author: map[key].author, twit: map[key].twit }
+				return { author: _(map[key].author), twit: _(map[key].twit) }
 			})
 			this.setState({ twits: [this.state.twits, ...twits].reverse() })
 		})
@@ -37,8 +38,8 @@ class App extends Component {
 
 	send() {
 		this.firebaseRef.database.ref('/twits').push({
-			author: this.state.author,
-			twit: this.state.twit
+			author: this.state.author || '',
+			twit: this.state.twit || ''
 		})
 	}
 
