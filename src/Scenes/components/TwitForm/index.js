@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Jumbotron, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-
 export default (props) => (
 	<Jumbotron>
 		<Form>

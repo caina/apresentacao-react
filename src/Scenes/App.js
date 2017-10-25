@@ -57,8 +57,6 @@ class App extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<Col md="12">
-					</Col>
 					{
 						this.state.twits.map(Twit)
 					}

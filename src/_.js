@@ -29,5 +29,5 @@ const NOT_ALLOWED = [
 ]
 
 export default (word = ' ') => {
-	return word.split(" ").map(w => NOT_ALLOWED.includes(w.toLowerCase()) ? 'React é lindo <3' : w)
+	return word.split(" ").map(w => NOT_ALLOWED.includes(w.toLowerCase()) ? 'React é lindo <3' : w).join(" ")
 }

@@ -5,7 +5,7 @@ import {
 
 import './twit.scss'
 export default ({ author, twit }) => (
-	<div className="col-md-4 twit_component">
+	<div className="col-md-4 col-lg-4 twit_component">
 		<Card>
 			<CardBody>
 				<CardTitle>{author}</CardTitle>
