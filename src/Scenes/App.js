@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import firebase from 'firebase'
-import logo from './logo.svg';
-import Twit from './Twit'
+import Twit from './components/Twit'
 import TwitForm from './components/TwitForm'
 import { Container, Row, Col } from 'reactstrap';
-import './App.css';
 
 class App extends Component {
 
 	constructor(props) {
 		super(props)
+
 		this.state = {
 			author: undefined,
 			twit: undefined,
@@ -24,11 +23,11 @@ class App extends Component {
 		this.firebaseRef = firebase.database().ref('/twits')
 		this.firebaseRef.on('value', (snapshot) => {
 			const map = snapshot.val()
-			const chaves = Object.keys(map)
+			const chaves = Object.keys(map || [])
 			const twits = chaves.map(key => {
 				return { author: map[key].author, twit: map[key].twit }
 			})
-			this.setState({ twits: [...this.state.twits, ...twits] })
+			this.setState({ twits: [this.state.twits, ...twits].reverse() })
 		})
 	}
 

@@ -1,12 +1,11 @@
 import React from 'react'
 import {
-	Card, CardImg, CardText, CardBody,
-	CardTitle, CardSubtitle, Button
+	Card, CardText, CardBody, CardTitle
 } from 'reactstrap';
 
-
+import './twit.scss'
 export default ({ author, twit }) => (
-	<div>
+	<div className="col-md-4 twit_component">
 		<Card>
 			<CardBody>
 				<CardTitle>{author}</CardTitle>
